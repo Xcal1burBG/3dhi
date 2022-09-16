@@ -10,6 +10,8 @@ namespace _3dhi.Controllers
         {
             _logger = logger;
         }
+
+        [Route("~/realestates")]
         public IActionResult RealEstates()
         {
             return View();

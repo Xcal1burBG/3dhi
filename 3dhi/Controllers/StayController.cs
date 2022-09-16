@@ -10,6 +10,8 @@ namespace _3dhi.Controllers
         {
             _logger = logger;
         }
+
+        [Route("~/stay")]
         public IActionResult Stay()
         {
             return View();
