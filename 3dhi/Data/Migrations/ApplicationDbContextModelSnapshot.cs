@@ -61,6 +61,29 @@ namespace _3dhi.Migrations
                     b.ToTable("Listings");
                 });
 
+            modelBuilder.Entity("_3dhi.Models.ListingStats", b =>
+                {
+                    b.Property<decimal>("Cost")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("Income")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<Guid>("ListingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.ToTable("ListingStats");
+                });
+
             modelBuilder.Entity("_3dhi.Models.Message", b =>
                 {
                     b.Property<DateTime>("Date")
