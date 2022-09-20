@@ -11,7 +11,7 @@ namespace _3dhi.Models
         public string Address { get; set; }
         public string MainPhoto { get; set; }
         public EntityStatus EntityStatus { get; set; }
-        public User? User { get; set; }
-        public List<string>? PhotoPaths { get; set; }
+        public User User { get; set; }
+        public ICollection<string>? PhotoPaths { get; set; }
     }
 }

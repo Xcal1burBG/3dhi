@@ -13,7 +13,7 @@ namespace _3dhi.Models
         public DateTime DateCreated { get; set; }
         public bool IsHost { get; set; }
         public EntityStatus EntityStatus { get; set; }
-        List<Listing>? Listings { get; set; }
+        ICollection<Listing>? Listings { get; set; }
 
 
     }
