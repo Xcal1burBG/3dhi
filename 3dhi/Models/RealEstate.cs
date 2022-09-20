@@ -11,6 +11,6 @@ namespace _3dhi.Models
         public int NumberOfRooms { get; set; }
         public int FloorNumber { get; set; }
         public decimal Price { get; set; }
-        public ICollection<string> PhotoPaths { get; set; }
+        public ICollection<PhotoPath> PhotoPaths { get; set; }
     }
 }

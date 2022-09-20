@@ -30,6 +30,9 @@ namespace _3dhi.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Pricing>().Property(x => x.Price).HasPrecision(6, 2);
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
+            modelBuilder.Entity<Message>().HasNoKey();
+            modelBuilder.Entity<Occupancy>().HasNoKey();
+            modelBuilder.Entity<Pricing>().HasNoKey();
         }
         public virtual DbSet<Listing> Listings { get; set; }
         public virtual DbSet<Message> Messages { get; set; }

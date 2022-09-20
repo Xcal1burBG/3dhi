@@ -6,7 +6,7 @@ namespace _3dhi.Models
 {
     public sealed class User : IdentityUser
     {
-
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public DateTime BirhDate { get; set; }
