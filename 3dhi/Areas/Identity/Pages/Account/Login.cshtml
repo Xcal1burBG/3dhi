@@ -5,8 +5,7 @@
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
-                <h2>Влез в акаунта си:</h2>
-                <hr />
+                <h4>Влез в акаунта си:</h4>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
@@ -27,18 +26,18 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Влез</button>
                 </div>
                 <div>
                     <br />
                     <p>
-                        <button type="button" class="btn btn-outline-primary btn-sm" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="forgot-password" asp-page="./ForgotPassword">Забравена парола</button>
                     </p>
                     <p>
-                        <button type="button" class="btn btn-outline-primary btn-sm" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Нова регистрация</button>
                     </p>
                     <p>
-                        <button type="button" class="btn btn-outline-primary btn-sm" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати имейл за потвърждение</button>
                     </p>
                 </div>
             </form>
