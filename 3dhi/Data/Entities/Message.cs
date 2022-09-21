@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace _3dhi.Models
+namespace _3dhi.Data.Entities
 {
     public class Message
     {

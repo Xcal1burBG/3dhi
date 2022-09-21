@@ -1,4 +1,4 @@
-﻿namespace _3dhi.Models
+﻿namespace _3dhi.Data.Entities
 {
     public sealed class Pricing
     {

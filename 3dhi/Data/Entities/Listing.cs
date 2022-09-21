@@ -1,6 +1,6 @@
 ﻿using _3dhi.Enum;
 
-namespace _3dhi.Models
+namespace _3dhi.Data.Entities
 {
     public sealed class Listing
     {
@@ -12,6 +12,7 @@ namespace _3dhi.Models
         public string MainPhoto { get; set; }
         public EntityStatus EntityStatus { get; set; }
         public User User { get; set; }
+        #nullable enable
         public ICollection<PhotoPath>? PhotoPaths { get; set; }
     }
 }
