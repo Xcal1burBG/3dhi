@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _3dhi.Data;
 
@@ -11,9 +12,10 @@ using _3dhi.Data;
 namespace _3dhi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220921103335_ChangesInDBContext")]
+    partial class ChangesInDBContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,46 +24,42 @@ namespace _3dhi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("_3dhi.Models.Listing", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Listing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("EntityStatus")
                         .HasColumnType("int");
 
                     b.Property<string>("MainPhoto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Listings");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.ListingStats", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.ListingStats", b =>
                 {
                     b.Property<decimal>("Cost")
                         .HasPrecision(10, 2)
@@ -71,7 +69,6 @@ namespace _3dhi.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Income")
@@ -84,7 +81,7 @@ namespace _3dhi.Migrations
                     b.ToTable("ListingStats");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.Message", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Message", b =>
                 {
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -96,13 +93,12 @@ namespace _3dhi.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Text")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.Occupancy", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Occupancy", b =>
                 {
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -116,7 +112,7 @@ namespace _3dhi.Migrations
                     b.ToTable("Occupancies");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.PhotoPath", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.PhotoPath", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,7 +125,6 @@ namespace _3dhi.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Path")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("RealEstateId")
@@ -147,7 +142,7 @@ namespace _3dhi.Migrations
                     b.ToTable("PhotoPaths");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.Pricing", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Pricing", b =>
                 {
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -162,7 +157,7 @@ namespace _3dhi.Migrations
                     b.ToTable("Pricing");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.RealEstate", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.RealEstate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,14 +166,12 @@ namespace _3dhi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("FloorNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("NumberOfRooms")
@@ -196,7 +189,7 @@ namespace _3dhi.Migrations
                     b.ToTable("RealEstates");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.User", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(200)");
@@ -225,7 +218,6 @@ namespace _3dhi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsHost")
@@ -258,7 +250,6 @@ namespace _3dhi.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -418,26 +409,26 @@ namespace _3dhi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("_3dhi.Models.Listing", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Listing", b =>
                 {
-                    b.HasOne("_3dhi.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1")
+                    b.HasOne("_3dhi.Data.Entities.User", "User")
+                        .WithMany("Listings")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.PhotoPath", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.PhotoPath", b =>
                 {
-                    b.HasOne("_3dhi.Models.Listing", "Listing")
+                    b.HasOne("_3dhi.Data.Entities.Listing", "Listing")
                         .WithMany("PhotoPaths")
                         .HasForeignKey("ListingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_3dhi.Models.RealEstate", null)
+                    b.HasOne("_3dhi.Data.Entities.RealEstate", null)
                         .WithMany("PhotoPaths")
                         .HasForeignKey("RealEstateId");
 
@@ -455,7 +446,7 @@ namespace _3dhi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("_3dhi.Models.User", null)
+                    b.HasOne("_3dhi.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +455,7 @@ namespace _3dhi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("_3dhi.Models.User", null)
+                    b.HasOne("_3dhi.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -479,7 +470,7 @@ namespace _3dhi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_3dhi.Models.User", null)
+                    b.HasOne("_3dhi.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -488,21 +479,26 @@ namespace _3dhi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("_3dhi.Models.User", null)
+                    b.HasOne("_3dhi.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("_3dhi.Models.Listing", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.Listing", b =>
                 {
                     b.Navigation("PhotoPaths");
                 });
 
-            modelBuilder.Entity("_3dhi.Models.RealEstate", b =>
+            modelBuilder.Entity("_3dhi.Data.Entities.RealEstate", b =>
                 {
                     b.Navigation("PhotoPaths");
+                });
+
+            modelBuilder.Entity("_3dhi.Data.Entities.User", b =>
+                {
+                    b.Navigation("Listings");
                 });
 #pragma warning restore 612, 618
         }
