@@ -1,56 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace _3dhi.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialCriate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Roles",
+                name: "ListingStats",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                    ListingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    Income = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Cost = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    BirhDate = table.Column<DateTime>(type: "date", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "date", nullable: false),
-                    IsHost = table.Column<bool>(type: "bit", nullable: false),
-                    EntityStatus = table.Column<int>(type: "int", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +30,7 @@ namespace _3dhi.Migrations
                     Date = table.Column<DateTime>(type: "date", nullable: false),
                     SenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ReceiverId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(200)", nullable: false)
+                    Text = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,8 +67,8 @@ namespace _3dhi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     NumberOfRooms = table.Column<int>(type: "int", nullable: false),
                     FloorNumber = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
@@ -109,12 +79,58 @@ namespace _3dhi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    BirhDate = table.Column<DateTime>(type: "date", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "date", nullable: true),
+                    IsHost = table.Column<bool>(type: "bit", nullable: true),
+                    EntityStatus = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
@@ -127,6 +143,29 @@ namespace _3dhi.Migrations
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Listings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    MainPhoto = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    EntityStatus = table.Column<int>(type: "int", nullable: false),
+                    FK_Listing_UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Listings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Listings_Users_FK_Listing_UserId",
+                        column: x => x.FK_Listing_UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +200,7 @@ namespace _3dhi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_UserLogins", x => new { x.ProviderKey, x.LoginProvider });
                     table.ForeignKey(
                         name: "FK_UserLogins_Users_UserId",
                         column: x => x.UserId,
@@ -175,7 +214,7 @@ namespace _3dhi.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(200)", nullable: false)
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,35 +254,12 @@ namespace _3dhi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Listings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    MainPhoto = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    EntityStatus = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Listings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Listings_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PhotoPaths",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ListingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     DateSaved = table.Column<DateTime>(type: "date", nullable: false),
                     SizeKb = table.Column<int>(type: "int", nullable: false),
                     RealEstateId = table.Column<int>(type: "int", nullable: true)
@@ -263,6 +279,21 @@ namespace _3dhi.Migrations
                         principalTable: "RealEstates",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Listings_FK_Listing_UserId",
+                table: "Listings",
+                column: "FK_Listing_UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoPaths_ListingId",
+                table: "PhotoPaths",
+                column: "ListingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoPaths_RealEstateId",
+                table: "PhotoPaths",
+                column: "RealEstateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -302,25 +333,25 @@ namespace _3dhi.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Listings_UserId",
-                table: "Listings",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhotoPaths_ListingId",
-                table: "PhotoPaths",
-                column: "ListingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhotoPaths_RealEstateId",
-                table: "PhotoPaths",
-                column: "RealEstateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ListingStats");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Occupancies");
+
+            migrationBuilder.DropTable(
+                name: "PhotoPaths");
+
+            migrationBuilder.DropTable(
+                name: "Pricing");
+
             migrationBuilder.DropTable(
                 name: "RoleClaims");
 
@@ -337,25 +368,13 @@ namespace _3dhi.Migrations
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "Messages");
-
-            migrationBuilder.DropTable(
-                name: "Occupancies");
-
-            migrationBuilder.DropTable(
-                name: "PhotoPaths");
-
-            migrationBuilder.DropTable(
-                name: "Pricing");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
-
-            migrationBuilder.DropTable(
                 name: "Listings");
 
             migrationBuilder.DropTable(
                 name: "RealEstates");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");

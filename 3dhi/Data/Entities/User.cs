@@ -4,7 +4,7 @@ using Microsoft.Build.Framework;
 
 namespace _3dhi.Data.Entities
 {
-    public sealed class User : IdentityUser
+    public sealed class User : IdentityUser<Guid>
     {
         public new Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -14,7 +14,7 @@ namespace _3dhi.Data.Entities
         public bool IsHost { get; set; }
         public EntityStatus EntityStatus { get; set; }
 
-        #nullable enable
+#nullable enable
         public ICollection<Listing>? Listings { get; set; }
 
 

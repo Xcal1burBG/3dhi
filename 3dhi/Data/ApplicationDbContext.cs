@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
 
 namespace _3dhi.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,14 +25,30 @@ namespace _3dhi.Data
             base.ConfigureConventions(configurationBuilder);
             configurationBuilder.Properties<string>().HaveColumnType("nvarchar(200)");
             configurationBuilder.Properties<DateTime>().HaveColumnType("date");
-            configurationBuilder.Properties<decimal>().HavePrecision(10,2);
+            configurationBuilder.Properties<decimal>().HavePrecision(10, 2);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUser<Guid>>(entity => { entity.ToTable(name: "Users").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityRole<Guid>>(entity => { entity.ToTable(name: "Roles"); });
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity => { entity.ToTable("UserRoles").HasKey(key => new { key.UserId, key.RoleId }); });
+            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => { entity.ToTable("UserClaims").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").HasKey(key => new { key.ProviderKey, key.LoginProvider }); });
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => { entity.ToTable("RoleClaims"); });
+            modelBuilder.Entity<IdentityUserToken<Guid>>(entity => { entity.ToTable("UserTokens").HasKey(key => new { key.UserId, key.LoginProvider, key.Name }); });
+
+
+
+
             modelBuilder.Entity<Pricing>().Property(x => x.Price).HasPrecision(6, 2);
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
+            modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
+            modelBuilder.Entity<Listing>().HasOne(x => x.User).WithMany(y => y.Listings).HasForeignKey("FK_Listing_UserId");
             modelBuilder.Entity<Message>().HasNoKey();
             modelBuilder.Entity<Occupancy>().HasNoKey();
             modelBuilder.Entity<Pricing>().HasNoKey();
