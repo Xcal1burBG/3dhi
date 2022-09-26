@@ -1,6 +1,6 @@
-﻿namespace _3dhi.Services
+﻿namespace _3dhi.Services.RealEstatesService
 {
-    public class RealEstatesService
+    public class RealEstatesService : IRealEstatesService
     {
         // Create RealEstate
         // Get RealEstate

@@ -1,6 +1,6 @@
-﻿namespace _3dhi.Services
+﻿namespace _3dhi.Services.ListingsService
 {
-    public class ListingsService
+    public class ListingsService : IListingsService
     {
         // Create Listing
         // Get Listing

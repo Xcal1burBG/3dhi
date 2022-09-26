@@ -1,6 +1,6 @@
-﻿namespace _3dhi.Services
+﻿namespace _3dhi.Services.OccupancyService
 {
-    public class OccupancyService
+    public class OccupancyService : IOccupancyService
     {
         // Create Occupancy
         // Get Occupancy
