@@ -1,6 +1,6 @@
 using _3dhi.Data;
 using _3dhi.Data.Entities;
-using _3dhi.Services.AdministrationService;
+using _3dhi.Services.AdditionalService;
 using _3dhi.Services.ListingsService;
 using _3dhi.Services.MessagesService;
 using _3dhi.Services.OccupancyService;
@@ -22,12 +22,12 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
             .AddDefaultUI()
             .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IAdministrationService, AdministrationService>();
 builder.Services.AddTransient<IListingsService, ListingsService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
 builder.Services.AddTransient<IOccupancyService, OccupancyService>();
 builder.Services.AddTransient<IPricingService, PricingService>();
 builder.Services.AddTransient<IRealEstatesService, RealEstatesService>();
+builder.Services.AddTransient<ICostsService, CostsService>();
 
 
 var app = builder.Build();
