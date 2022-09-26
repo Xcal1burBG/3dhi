@@ -1,4 +1,5 @@
 ﻿using _3dhi.Data.Entities;
+using _3dhi.Data.Entities._3dhi.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +53,8 @@ namespace _3dhi.Data
             modelBuilder.Entity<Message>().HasNoKey();
             modelBuilder.Entity<Occupancy>().HasNoKey();
             modelBuilder.Entity<Pricing>().HasNoKey();
-            modelBuilder.Entity<ListingStats>().HasNoKey();
+            modelBuilder.Entity<Cost>().HasNoKey();
+            modelBuilder.Entity<Income>().HasNoKey();
         }
         public virtual DbSet<Listing> Listings { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
@@ -60,7 +62,8 @@ namespace _3dhi.Data
         public virtual DbSet<PhotoPath> PhotoPaths { get; set; }
         public virtual DbSet<Pricing> Pricing { get; set; }
         public virtual DbSet<RealEstate> RealEstates { get; set; }
-        public virtual DbSet<ListingStats> ListingStats { get; set; }
+        public virtual DbSet<Cost> Costs { get; set; }
+        public virtual DbSet<Income> Incomes { get; set; }
 
 
     }
