@@ -4,7 +4,7 @@
     {
 
         // Create Cost
-        // Get
+        // Get Cost
         // Edit Cost
         // Delete Cost
     }

@@ -5,7 +5,7 @@ namespace _3dhi.Data.Entities
     public sealed class Listing
     {
         public Guid Id { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
