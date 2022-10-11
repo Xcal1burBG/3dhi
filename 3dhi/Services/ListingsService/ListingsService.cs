@@ -12,6 +12,12 @@ namespace _3dhi.Services.ListingsService
 
         private readonly ApplicationDbContext db;
 
+        public ListingsService(ApplicationDbContext db)
+        {
+            this.db = db;
+        }
+
+
         // Create Listing
         public async Task<Listing> CreateListing(CreateListingInput input)
         {

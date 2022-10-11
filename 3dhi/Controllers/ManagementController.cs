@@ -16,5 +16,26 @@ namespace _3dhi.Controllers
         {
             return View();
         }
+
+
+        // Manage Listings
+
+        [HttpPost]
+        [RequestSizeLimit(5 * 1024 * 1024)]
+        public IActionResult Upload(IFormFile[] images)
+        {
+            var memoryStream = new MemoryStream();
+            images.First().CopyTo(memoryStream);
+            memoryStream.ToArray();
+
+
+            return this.RedirectToAction(nameof(this.PhotoUploaded));
+        }
+
+        public IActionResult PhotoUploaded()
+        {
+            return this.View();
+        }
+
     }
 }

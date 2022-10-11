@@ -1,6 +1,6 @@
 ﻿namespace _3dhi.Data.Entities
 {
-    public sealed class Occupancy
+    public class Occupancy
     {
         public Guid ListingId { get; set; }
         public DateTime Date { get; set; }

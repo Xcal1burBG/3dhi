@@ -1,6 +1,6 @@
 ﻿namespace _3dhi.Data.Entities
 {
-    public sealed class Cost
+    public class Cost
     {
         public Guid ListingId { get; set; }
         public string Description { get; set; }

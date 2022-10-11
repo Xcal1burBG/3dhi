@@ -2,7 +2,7 @@
 {
     namespace _3dhi.Data.Entities
     {
-        public sealed class Income
+        public class Income
         {
             public Guid ListingId { get; set; }
             public string Description { get; set; }
