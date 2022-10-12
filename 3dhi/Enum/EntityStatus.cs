@@ -3,6 +3,7 @@
     public enum EntityStatus
     {
         Deleted = 0,
-        Created = 1
+        Created = 1,
+        Deactivated = 2
     }
 }
