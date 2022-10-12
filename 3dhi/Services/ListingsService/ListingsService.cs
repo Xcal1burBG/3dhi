@@ -28,7 +28,7 @@ namespace _3dhi.Services.ListingsService
                 Title = input.Title,
                 Description = input.Description,
                 Address = input.Address,
-                MainPhoto = input.MainPhoto,
+                MainPhotoPath = input.MainPhotoPath,
                 EntityStatus = EntityStatus.Created
 
             };
@@ -54,7 +54,7 @@ namespace _3dhi.Services.ListingsService
             listing.Title = input.Title;
             listing.Description = input.Description;
             listing.Address = input.Address;
-            listing.MainPhoto = input.MainPhoto;
+            listing.MainPhotoPath = input.MainPhotoPath;
 
             await this.db.SaveChangesAsync();
             return listing;
