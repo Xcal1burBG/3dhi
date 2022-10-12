@@ -26,6 +26,7 @@ namespace _3dhi.Data.AdminSeeder
                     admin.UserName = "Admin";
                     admin.NormalizedUserName = "ADMIN";
                     admin.Email = "admin@admin.com";
+                    admin.NormalizedEmail = "ADMIN@ADMIN.COM";
                     admin.EmailConfirmed = true;
                     admin.PasswordHash = hasher.HashPassword(admin, "admin85");
                     admin.PhoneNumberConfirmed = true;
