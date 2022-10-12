@@ -55,7 +55,10 @@ namespace _3dhi.Data
             modelBuilder.Entity<Pricing>().HasNoKey();
             modelBuilder.Entity<Cost>().HasNoKey();
             modelBuilder.Entity<Income>().HasNoKey();
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
         }
+
         public virtual DbSet<Listing> Listings { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Occupancy> Occupancies { get; set; }
