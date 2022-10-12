@@ -1,4 +1,5 @@
 using _3dhi.Data;
+using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
 using _3dhi.Services.AdditionalService;
 using _3dhi.Services.ListingsService;
@@ -56,5 +57,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+// Seed Admin in Database
+AdminSeeder.Seed(app);
 
 app.Run();

@@ -2,7 +2,7 @@
 
 namespace _3dhi.Data.Entities
 {
-    public class Role : IdentityRole
+    public class Role : IdentityRole<Guid>
     {
         public new Guid Id { get; set; }
     }
