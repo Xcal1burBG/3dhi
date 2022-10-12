@@ -5,19 +5,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace _3dhi.Migrations
 {
-    public partial class InitialCriate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ListingStats",
+                name: "Costs",
                 columns: table => new
                 {
                     ListingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
-                    Income = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Cost = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Incomes",
+                columns: table => new
+                {
+                    ListingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,13 +162,15 @@ namespace _3dhi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    MainPhoto = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    placesAdults = table.Column<int>(type: "int", nullable: false),
+                    placesChildren = table.Column<int>(type: "int", nullable: false),
+                    MainPhotoPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     EntityStatus = table.Column<int>(type: "int", nullable: false),
-                    FK_Listing_UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    FK_Listing_UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,7 +179,8 @@ namespace _3dhi.Migrations
                         name: "FK_Listings_Users_FK_Listing_UserId",
                         column: x => x.FK_Listing_UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,6 +275,7 @@ namespace _3dhi.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ListingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Path = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Extension = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     DateSaved = table.Column<DateTime>(type: "date", nullable: false),
                     SizeKb = table.Column<int>(type: "int", nullable: false),
                     RealEstateId = table.Column<int>(type: "int", nullable: true)
@@ -338,7 +354,10 @@ namespace _3dhi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ListingStats");
+                name: "Costs");
+
+            migrationBuilder.DropTable(
+                name: "Incomes");
 
             migrationBuilder.DropTable(
                 name: "Messages");

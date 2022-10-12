@@ -12,8 +12,8 @@ using _3dhi.Data;
 namespace _3dhi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221012075828_AddingCountPeopleInListing")]
-    partial class AddingCountPeopleInListing
+    [Migration("20221012090815_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
