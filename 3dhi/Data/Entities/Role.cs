@@ -5,5 +5,6 @@ namespace _3dhi.Data.Entities
     public class Role : IdentityRole<Guid>
     {
         public override Guid Id { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

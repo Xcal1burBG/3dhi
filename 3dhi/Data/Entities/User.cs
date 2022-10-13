@@ -14,8 +14,9 @@ namespace _3dhi.Data.Entities
         public bool IsHost { get; set; }
         public EntityStatus EntityStatus { get; set; }
 
+        public ICollection<UserRole> UserRoles { get; set; }
 #nullable enable
         public ICollection<Listing>? Listings { get; set; }
 
-            }
+    }
 }
