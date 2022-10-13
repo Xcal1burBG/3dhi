@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _3dhi.Data;
 
@@ -12,10 +11,9 @@ using _3dhi.Data;
 namespace _3dhi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221013082901_InitialCreate")]
-    partial class InitialCreate
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,6 +219,10 @@ namespace _3dhi.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -237,6 +239,8 @@ namespace _3dhi.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -390,11 +394,17 @@ namespace _3dhi.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -416,6 +426,13 @@ namespace _3dhi.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("_3dhi.Data.Entities.Role", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>");
+
+                    b.HasDiscriminator().HasValue("Role");
                 });
 
             modelBuilder.Entity("_3dhi.Data.Entities.User", b =>
@@ -441,6 +458,13 @@ namespace _3dhi.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.HasDiscriminator().HasValue("User");
+                });
+
+            modelBuilder.Entity("_3dhi.Data.Entities.UserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>");
+
+                    b.HasDiscriminator().HasValue("UserRole");
                 });
 
             modelBuilder.Entity("_3dhi.Data.Entities.Listing", b =>
@@ -520,6 +544,27 @@ namespace _3dhi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("_3dhi.Data.Entities.UserRole", b =>
+                {
+                    b.HasOne("_3dhi.Data.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserRoles_Roles_RoleId1");
+
+                    b.HasOne("_3dhi.Data.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserRoles_Users_UserId1");
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("_3dhi.Data.Entities.Listing", b =>
                 {
                     b.Navigation("PhotoPaths");
@@ -530,9 +575,16 @@ namespace _3dhi.Migrations
                     b.Navigation("PhotoPaths");
                 });
 
+            modelBuilder.Entity("_3dhi.Data.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("_3dhi.Data.Entities.User", b =>
                 {
                     b.Navigation("Listings");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

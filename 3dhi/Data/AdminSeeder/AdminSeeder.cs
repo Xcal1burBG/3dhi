@@ -23,8 +23,8 @@ namespace _3dhi.Data.AdminSeeder
 
 
                     admin.Id = Guid.NewGuid();
-                    admin.UserName = "Admin";
-                    admin.NormalizedUserName = "ADMIN";
+                    admin.UserName = "admin@admin.com";
+                    admin.NormalizedUserName = "ADMIN@ADMIN.COM";
                     admin.Email = "admin@admin.com";
                     admin.NormalizedEmail = "ADMIN@ADMIN.COM";
                     admin.EmailConfirmed = true;
@@ -50,24 +50,24 @@ namespace _3dhi.Data.AdminSeeder
                     role.NormalizedName = "ADMIN";
 
                     context.Roles.Add(role);
+
+
                     // Creating relation between role and user "Admin"
 
-                    //
                     var userRole = new UserRole();
+                    userRole.User = admin;
+                    userRole.Role = role;
                     userRole.UserId = admin.Id;
                     userRole.RoleId = role.Id;
 
-                    //
+
 
                     context.UserRoles.Add(userRole);
-                    
-
-                    context.SaveChanges();
-
-                  
 
 
                     context.SaveChanges();
+
+
 
                 }
             }
