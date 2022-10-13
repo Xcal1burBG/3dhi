@@ -22,7 +22,7 @@ namespace _3dhi.Data.AdminSeeder
                     var admin = new User();
 
 
-                    admin.Id = new Guid();
+                    admin.Id = Guid.NewGuid();
                     admin.UserName = "Admin";
                     admin.NormalizedUserName = "ADMIN";
                     admin.Email = "admin@admin.com";
@@ -40,26 +40,32 @@ namespace _3dhi.Data.AdminSeeder
                     admin.EntityStatus = EntityStatus.Created;
 
                     context.Users.Add(admin);
-                    context.SaveChanges();
-                    
+
                     // Adding Role "Admin"
 
                     var role = new Role();
 
-                    role.Id = new Guid();
+                    role.Id = Guid.NewGuid();
                     role.Name = "Admin";
                     role.NormalizedName = "ADMIN";
 
                     context.Roles.Add(role);
+                    // Creating relation between role and user "Admin"
+
+                    //
+                    var userRole = new UserRole();
+                    userRole.UserId = admin.Id;
+                    userRole.RoleId = role.Id;
+
+                    //
+
+                    context.UserRoles.Add(userRole);
+                    
 
                     context.SaveChanges();
 
-                    // Creating relation between role and user "Admin"
-                    context.UserRoles.Add(new UserRole()
-                    {
-                        UserId = admin.Id,
-                        RoleId = role.Id
-                    });
+                  
+
 
                     context.SaveChanges();
 

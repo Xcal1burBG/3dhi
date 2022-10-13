@@ -6,7 +6,7 @@ namespace _3dhi.Data.Entities
 {
     public class User : IdentityUser<Guid>
     {
-        public new Guid Id { get; set; }
+        public override Guid Id { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public DateTime BirhDate { get; set; }
@@ -15,8 +15,7 @@ namespace _3dhi.Data.Entities
         public EntityStatus EntityStatus { get; set; }
 
 #nullable enable
-        public  ICollection<Listing>? Listings { get; set; }
+        public ICollection<Listing>? Listings { get; set; }
 
-
-    }
+            }
 }
