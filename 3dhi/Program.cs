@@ -32,6 +32,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 6;
 });
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 builder.Services.AddTransient<IListingsService, ListingsService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
 builder.Services.AddTransient<IOccupancyService, OccupancyService>();
