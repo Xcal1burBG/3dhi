@@ -29,6 +29,7 @@ namespace _3dhi.Data.AdminSeeder
                     admin.NormalizedEmail = "ADMIN@ADMIN.COM";
                     admin.EmailConfirmed = true;
                     admin.PasswordHash = hasher.HashPassword(admin, "admin85");
+                    admin.SecurityStamp = Guid.NewGuid().ToString();
                     admin.PhoneNumberConfirmed = true;
                     admin.TwoFactorEnabled = false;
                     admin.LockoutEnabled = true;

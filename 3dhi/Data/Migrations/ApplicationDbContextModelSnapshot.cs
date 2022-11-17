@@ -34,6 +34,12 @@ namespace _3dhi.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ListingId")
                         .HasColumnType("uniqueidentifier");
 
@@ -51,6 +57,12 @@ namespace _3dhi.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ListingId")
                         .HasColumnType("uniqueidentifier");
@@ -103,6 +115,9 @@ namespace _3dhi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ReceiverId")
                         .HasColumnType("uniqueidentifier");
 
@@ -119,6 +134,12 @@ namespace _3dhi.Migrations
                 {
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
@@ -147,8 +168,8 @@ namespace _3dhi.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int?>("RealEstateId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("RealEstateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SizeKb")
                         .HasColumnType("int");
@@ -179,14 +200,15 @@ namespace _3dhi.Migrations
 
             modelBuilder.Entity("_3dhi.Data.Entities.RealEstate", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<int>("FloorNumber")
                         .HasColumnType("int");
@@ -197,8 +219,8 @@ namespace _3dhi.Migrations
                     b.Property<int>("NumberOfRooms")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("OwnerUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(10, 2)
