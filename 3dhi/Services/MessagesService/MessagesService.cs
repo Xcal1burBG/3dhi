@@ -1,4 +1,5 @@
 ﻿using _3dhi.Data;
+using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
 using _3dhi.Models.InputModels;
 using _3dhi.Models.ViewModels;
@@ -35,7 +36,36 @@ namespace _3dhi.Services.MessagesService
             await this._db.SaveChangesAsync();
 
             return message;
-}
+        }
+
+
+        // Sending message from "Contact us" form sends list of messages to all users with role "Admin"
+        public async Task SendMessageThroughContactUs(CreateMessageInputModel input)
+        {
+            var listOfAdmins = "";// TODO => service that returns list of the Ids of all admins
+
+            foreach (var admin in listOfAdmins)
+            {
+                var message = new Message
+                {
+                    Id = Guid.NewGuid(),
+                    Date = DateTime.UtcNow,
+                    SenderId = Guid.NewGuid(), //this is going to be changed!
+                    //ReceiverId = admin.Id,
+                    Text = input.Text,
+
+                };
+
+                await this._db.Messages.AddAsync(message);
+
+            }
+
+            await this._db.SaveChangesAsync();
+
+        }
+
+
+
         // Get Message
         // Get All messages
         public async Task<List<Message>> GetAllMessages()
