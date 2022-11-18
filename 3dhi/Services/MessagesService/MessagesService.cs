@@ -1,5 +1,7 @@
 ﻿using _3dhi.Data;
 using _3dhi.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace _3dhi.Services.MessagesService
 {
@@ -14,9 +16,10 @@ namespace _3dhi.Services.MessagesService
         // Send Message
         // Get Message
         // Get All messages
-        public async Task<Message> GetAllMessages()
+        public async Task<List<Message>> GetAllMessages()
         {
-            var allMessages = 
+            var allMessages = await this._db.Messages.ToListAsync();
+            return allMessages;
         }
     }
 }

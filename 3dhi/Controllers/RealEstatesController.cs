@@ -1,5 +1,6 @@
 ﻿using _3dhi.Data;
 using _3dhi.Data.Entities;
+using _3dhi.Models.DTOs;
 using _3dhi.Models.InputModels;
 using _3dhi.Models.ViewModels;
 using _3dhi.Services.RealEstatesService;
@@ -36,7 +37,7 @@ namespace _3dhi.Controllers
         public async Task<IActionResult> GetAllRealEstates()
         {
             List<RealEstate> realEstates = await _realEstateService.GetAllRealEstates();
-            var viewModel = _mapper.Map<RealEstatesViewModel>(realEstates);
+            var viewModel = _mapper.Map<RealEstatesDTO>(realEstates);
             return View(viewModel);
 
         }
