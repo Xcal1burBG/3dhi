@@ -1,4 +1,5 @@
 ﻿using _3dhi.Models.DTOs;
+using _3dhi.Models.InputModels;
 using _3dhi.Models.ViewModels;
 using _3dhi.Services.MessagesService;
 using AutoMapper;
@@ -16,6 +17,16 @@ namespace _3dhi.Controllers
         {
             _logger = logger;
             _messageService = messageService;
+        }
+
+        public async Task<IActionResult> CreateMessage(CreateMessageInputModel input)
+        {
+            var message = await this._messageService.CreateMessage(input);
+            var viewModel = this._mapper.Map<CreateMessageInputModel>(message);
+
+            return View(viewModel);
+
+
         }
         public async Task<IActionResult> GetAllMessages()
         {

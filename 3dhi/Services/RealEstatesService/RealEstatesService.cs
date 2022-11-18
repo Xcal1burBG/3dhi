@@ -33,6 +33,7 @@ namespace _3dhi.Services.RealEstatesService
 
             };
 
+            await _db.RealEstates.AddAsync(realEstate);
             await _db.SaveChangesAsync();
 
             return realEstate;

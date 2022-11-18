@@ -1,5 +1,7 @@
 ﻿using _3dhi.Data;
 using _3dhi.Data.Entities;
+using _3dhi.Models.InputModels;
+using _3dhi.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +11,31 @@ namespace _3dhi.Services.MessagesService
     {
 
         private readonly ApplicationDbContext _db;
+
         public MessagesService(ApplicationDbContext db)
         {
             _db = db;
         }
-        // Send Message
+
+
+        // Create Message = Send Message
+        public async Task<Message> CreateMessage(CreateMessageInputModel input)
+        {
+            var message = new Message
+            {
+                Id = Guid.NewGuid(),
+                Date = DateTime.UtcNow,
+                SenderId = Guid.NewGuid(), //this is going to be changed!
+                ReceiverId = input.ReceiverId,
+                Text = input.Text,
+
+            };
+
+            await this._db.Messages.AddAsync(message);
+            await this._db.SaveChangesAsync();
+
+            return message;
+}
         // Get Message
         // Get All messages
         public async Task<List<Message>> GetAllMessages()
