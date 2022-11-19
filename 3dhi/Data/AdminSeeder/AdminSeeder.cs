@@ -42,8 +42,8 @@ namespace _3dhi.Data.AdminSeeder
 
                     context.Users.Add(admin);
 
-                    // Adding Role "Admin"
 
+                    // Creating Role "Admin"
 
                     var role = new Role
                     {
@@ -54,9 +54,17 @@ namespace _3dhi.Data.AdminSeeder
 
                     };
 
-
-
                     context.Roles.Add(role);
+
+
+                    var userRole = new UserRole
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = admin.Id,
+                        RoleId = role.Id
+                    };
+
+                    context.UserRoles.Add(userRole);
 
 
                     context.SaveChanges();

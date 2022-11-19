@@ -2,6 +2,7 @@ using _3dhi.Data;
 using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
 using _3dhi.Services.AdditionalService;
+using _3dhi.Services.IncomesService;
 using _3dhi.Services.ListingsService;
 using _3dhi.Services.MessagesService;
 using _3dhi.Services.OccupancyService;
@@ -40,6 +41,7 @@ builder.Services.AddTransient<IOccupancyService, OccupancyService>();
 builder.Services.AddTransient<IPricingService, PricingService>();
 builder.Services.AddTransient<IRealEstatesService, RealEstatesService>();
 builder.Services.AddTransient<ICostsService, CostsService>();
+builder.Services.AddTransient<IIncomesService, IncomesService>();
 
 
 var app = builder.Build();
