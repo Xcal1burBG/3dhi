@@ -1,11 +1,13 @@
 ﻿using _3dhi.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Framework;
+using System.ComponentModel.DataAnnotations;
 
 namespace _3dhi.Data.Entities
 {
     public class User : IdentityUser<Guid>
     {
+        [Key]
         public override Guid Id { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }

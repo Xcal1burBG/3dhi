@@ -2,6 +2,7 @@
 using _3dhi.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using System.Security;
 
 namespace _3dhi.Data.AdminSeeder
@@ -41,8 +42,8 @@ namespace _3dhi.Data.AdminSeeder
                     admin.EntityStatus = EntityStatus.Created;
 
                     context.Users.Add(admin);
-
-
+                    context.SaveChanges();
+                    
                     // Creating Role "Admin"
 
                     var role = new Role
@@ -50,16 +51,16 @@ namespace _3dhi.Data.AdminSeeder
                         Id = Guid.NewGuid(),
                         Name = "Admin",
                         NormalizedName = "ADMIN",
-                        Discriminator = "ApplicationRole"
+                        Discriminator = "ApplicationUser"
+
 
                     };
 
                     context.Roles.Add(role);
-
+                    context.SaveChanges();
 
                     var userRole = new UserRole
                     {
-                        Id = Guid.NewGuid(),
                         UserId = admin.Id,
                         RoleId = role.Id
                     };

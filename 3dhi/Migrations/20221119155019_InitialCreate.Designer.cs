@@ -12,8 +12,8 @@ using _3dhi.Data;
 namespace _3dhi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221119100601_Fix3InUserAndRolesRelationship")]
-    partial class Fix3InUserAndRolesRelationship
+    [Migration("20221119155019_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
