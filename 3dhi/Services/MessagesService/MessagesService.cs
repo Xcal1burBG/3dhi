@@ -1,9 +1,6 @@
 ﻿using _3dhi.Data;
-using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
 using _3dhi.Models.InputModels;
-using _3dhi.Models.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace _3dhi.Services.MessagesService

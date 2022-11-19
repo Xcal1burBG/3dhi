@@ -44,26 +44,19 @@ namespace _3dhi.Data.AdminSeeder
 
                     // Adding Role "Admin"
 
-                    var role = new Role();
 
-                    role.Id = Guid.NewGuid();
-                    role.Name = "Admin";
-                    role.NormalizedName = "ADMIN";
+                    var role = new Role
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Admin",
+                        NormalizedName = "ADMIN",
+                        Discriminator = "ApplicationRole"
+
+                    };
+
+
 
                     context.Roles.Add(role);
-
-
-                    // Creating relation between role and user "Admin"
-
-                    var userRole = new UserRole();
-                    userRole.User = admin;
-                    userRole.Role = role;
-                    userRole.UserId = admin.Id;
-                    userRole.RoleId = role.Id;
-
-
-
-                    context.UserRoles.Add(userRole);
 
 
                     context.SaveChanges();

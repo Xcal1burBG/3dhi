@@ -50,8 +50,8 @@ namespace _3dhi.Data
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
             modelBuilder.Entity<Listing>().HasOne(x => x.User).WithMany(y => y.Listings).HasForeignKey("FK_Listing_UserId");
-            modelBuilder.Entity<UserRole>().HasOne(x => x.User).WithMany(y => y.UserRoles).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<UserRole>().HasOne(x => x.Role).WithMany(y => y.UserRoles).HasForeignKey(x => x.RoleId).OnDelete(DeleteBehavior.NoAction);
+            //modelBuilder.Entity<UserRole>().HasOne(x => x.User).WithMany(y => y.UserRoles).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
+            //modelBuilder.Entity<UserRole>().HasOne(x => x.Role).WithMany(y => y.UserRoles).HasForeignKey(x => x.RoleId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Message>().HasNoKey();
             modelBuilder.Entity<Occupancy>().HasNoKey();
             modelBuilder.Entity<Pricing>().HasNoKey();
