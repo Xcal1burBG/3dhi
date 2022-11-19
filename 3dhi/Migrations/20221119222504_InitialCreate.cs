@@ -215,8 +215,8 @@ namespace _3dhi.Migrations
                 name: "UserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(200)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -260,8 +260,8 @@ namespace _3dhi.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>

@@ -43,7 +43,7 @@ namespace _3dhi.Data.AdminSeeder
 
                     context.Users.Add(admin);
                     context.SaveChanges();
-                    
+
                     // Creating Role "Admin"
 
                     var role = new Role
@@ -51,7 +51,7 @@ namespace _3dhi.Data.AdminSeeder
                         Id = Guid.NewGuid(),
                         Name = "Admin",
                         NormalizedName = "ADMIN",
-                        Discriminator = "ApplicationUser"
+                        //Discriminator = "ApplicationUser"
 
 
                     };

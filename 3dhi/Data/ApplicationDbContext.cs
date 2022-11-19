@@ -8,9 +8,9 @@ using System.Security.Claims;
 
 namespace _3dhi.Data
 {
-    public class ApplicationDbContext : IdentityDbContext /*<IdentityUser<Guid>, IdentityRole<Guid>, Guid>*/
+    public class ApplicationDbContext : IdentityDbContext <IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+          public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
 
@@ -68,11 +68,11 @@ namespace _3dhi.Data
         public virtual DbSet<RealEstate> RealEstates { get; set; }
         public virtual DbSet<Cost> Costs { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
-        public override DbSet<IdentityUser> Users { get; set; }
-        public override DbSet<IdentityRole> Roles { get; set; }
-        public override DbSet<IdentityUserRole<String>> UserRoles { get; set; }
+        //public override DbSet<User> Users { get; set; }
+        //public override DbSet<Role> Roles { get; set; }
+        //public virtual DbSet<UserRole> UserRoles { get; set; }
 
-  
+          
        
     }
 }

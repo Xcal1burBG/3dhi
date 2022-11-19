@@ -7,8 +7,8 @@ namespace _3dhi.Data.Entities
 {
     public class User : IdentityUser<Guid>
     {
-        [Key]
-        public override Guid Id { get; set; }
+        //[Key]
+        //public override Guid Id { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public DateTime BirhDate { get; set; }
