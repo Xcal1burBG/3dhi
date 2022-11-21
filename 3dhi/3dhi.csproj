@@ -24,6 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\Scripts\DeleteUserRolesUserRoles.sql" />
+    <None Remove="Data\Scripts\SelectFromUsersRolesUserRoles.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Data\Scripts\DeleteUserRolesUserRoles.sql" />
+    <Compile Include="Data\Scripts\SelectFromUsersRolesUserRoles.sql" />
     <Compile Include="Views\Contacts\ContactUs.cshtml" />
   </ItemGroup>
 
@@ -44,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>

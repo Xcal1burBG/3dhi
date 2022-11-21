@@ -1,17 +1,15 @@
 ﻿using _3dhi.Data.Entities;
 using _3dhi.Data.Entities._3dhi.Data.Entities;
-using _3dhi.Data.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using System.Security.Claims;
+
 
 namespace _3dhi.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
-    
-     {
+    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
+
+    {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
           : base(options)
         {
@@ -35,15 +33,14 @@ namespace _3dhi.Data
         {
 
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.HasDefaultSchema("3hdi");
-            modelBuilder.Entity<IdentityUser<Guid>>(entity => { entity.ToTable(name: "Users", "security").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityRole<Guid>>(entity => { entity.ToTable(name: "Roles", "security").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityUserRole<Guid>>(entity => { entity.ToTable("UserRoles", "security").HasKey(p => new { p.UserId, p.RoleId }); ; });
-            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => { entity.ToTable("UserClaims", "security").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins", "security").Property(x => x.UserId).HasColumnType("uniqueidentifier"); ; });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins", "security").HasKey(key => new { key.ProviderKey, key.LoginProvider }); });
-            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => { entity.ToTable("RoleClaims", "security"); });
-            modelBuilder.Entity<IdentityUserToken<Guid>>(entity => { entity.ToTable("UserTokens", "security").HasKey(key => new { key.UserId, key.LoginProvider, key.Name }); });
+            modelBuilder.Entity<User>(entity => { entity.ToTable(name: "Users").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<Role>(entity => { entity.ToTable(name: "Roles").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity => { entity.ToTable("UserRoles").HasKey(p => new { p.UserId, p.RoleId }); ; });
+            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => { entity.ToTable("UserClaims").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").Property(x => x.UserId).HasColumnType("uniqueidentifier"); ; });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").HasKey(key => new { key.ProviderKey, key.LoginProvider }); });
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => { entity.ToTable("RoleClaims"); });
+            modelBuilder.Entity<IdentityUserToken<Guid>>(entity => { entity.ToTable("UserTokens").HasKey(key => new { key.UserId, key.LoginProvider, key.Name }); });
 
 
 

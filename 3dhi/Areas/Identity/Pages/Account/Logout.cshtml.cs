@@ -5,7 +5,6 @@
 using System;
 using System.Threading.Tasks;
 using _3dhi.Data.Entities;
-using _3dhi.Data.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
