@@ -1,4 +1,5 @@
-﻿using _3dhi.Enum;
+﻿using _3dhi.Data.Entities.Identity;
+using _3dhi.Enum;
 
 namespace _3dhi.Data.Entities
 {

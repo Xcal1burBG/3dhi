@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using _3dhi.Data.Entities.Identity;
 using _3dhi.Data.Entities;
 
 namespace _3dhi.Areas.Identity.Pages.Account

@@ -1,5 +1,6 @@
 ﻿using _3dhi.Data.Entities;
 using _3dhi.Data.Entities._3dhi.Data.Entities;
+using _3dhi.Data.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,11 @@ using System.Security.Claims;
 
 namespace _3dhi.Data
 {
-    public class ApplicationDbContext : IdentityDbContext <IdentityUser<Guid>, IdentityRole<Guid>, Guid>
-    {
-          public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
+    
+     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+          : base(options)
         {
 
         }
@@ -33,25 +35,23 @@ namespace _3dhi.Data
         {
 
             base.OnModelCreating(modelBuilder);
+            //modelBuilder.HasDefaultSchema("3hdi");
+            modelBuilder.Entity<IdentityUser<Guid>>(entity => { entity.ToTable(name: "Users", "security").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityRole<Guid>>(entity => { entity.ToTable(name: "Roles", "security").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity => { entity.ToTable("UserRoles", "security").HasKey(p => new { p.UserId, p.RoleId }); ; });
+            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => { entity.ToTable("UserClaims", "security").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins", "security").Property(x => x.UserId).HasColumnType("uniqueidentifier"); ; });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins", "security").HasKey(key => new { key.ProviderKey, key.LoginProvider }); });
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => { entity.ToTable("RoleClaims", "security"); });
+            modelBuilder.Entity<IdentityUserToken<Guid>>(entity => { entity.ToTable("UserTokens", "security").HasKey(key => new { key.UserId, key.LoginProvider, key.Name }); });
 
-            modelBuilder.Entity<IdentityUser<Guid>>(entity => { entity.ToTable(name: "Users").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityRole<Guid>>(entity => { entity.ToTable(name: "Roles").Property(x => x.Id).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityUserRole<Guid>>(entity => { entity.ToTable("UserRoles"); });
-            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => { entity.ToTable("UserClaims").Property(x => x.UserId).HasColumnType("uniqueidentifier"); });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").Property(x => x.UserId).HasColumnType("uniqueidentifier"); ; });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => { entity.ToTable("UserLogins").HasKey(key => new { key.ProviderKey, key.LoginProvider }); });
-            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => { entity.ToTable("RoleClaims"); });
-            modelBuilder.Entity<IdentityUserToken<Guid>>(entity => { entity.ToTable("UserTokens").HasKey(key => new { key.UserId, key.LoginProvider, key.Name }); });
 
 
 
-                        
             modelBuilder.Entity<Pricing>().Property(x => x.Price).HasPrecision(6, 2);
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
             modelBuilder.Entity<Listing>().Property(x => x.Description).HasColumnType("nvarchar(1000)");
             modelBuilder.Entity<Listing>().HasOne(x => x.User).WithMany(y => y.Listings).HasForeignKey("FK_Listing_UserId");
-            //modelBuilder.Entity<UserRole>().HasOne(x => x.User).WithMany(y => y.UserRoles).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
-            //modelBuilder.Entity<UserRole>().HasOne(x => x.Role).WithMany(y => y.UserRoles).HasForeignKey(x => x.RoleId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Message>().HasNoKey();
             modelBuilder.Entity<Occupancy>().HasNoKey();
             modelBuilder.Entity<Pricing>().HasNoKey();
@@ -68,12 +68,8 @@ namespace _3dhi.Data
         public virtual DbSet<RealEstate> RealEstates { get; set; }
         public virtual DbSet<Cost> Costs { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
-        //public override DbSet<User> Users { get; set; }
-        //public override DbSet<Role> Roles { get; set; }
-        //public virtual DbSet<UserRole> UserRoles { get; set; }
 
-          
-       
+
     }
 }
 

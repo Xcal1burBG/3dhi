@@ -1,6 +1,6 @@
 using _3dhi.Data;
-using _3dhi.Data.AdminSeeder;
-using _3dhi.Data.Entities;
+//using _3dhi.Data.AdminSeeder;
+using _3dhi.Data.Entities.Identity;
 using _3dhi.Services.AdditionalService;
 using _3dhi.Services.IncomesService;
 using _3dhi.Services.ListingsService;
@@ -78,6 +78,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 // Seed Admin in Database
-AdminSeeder.Seed(app);
+//AdminSeeder.Seed(app);
 
 app.Run();
