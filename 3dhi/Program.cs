@@ -1,4 +1,5 @@
 using _3dhi.Data;
+using _3dhi.Data.Entities;
 //using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities.Identity;
 using _3dhi.Services.AdditionalService;
