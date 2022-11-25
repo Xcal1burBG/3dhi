@@ -4,5 +4,6 @@ namespace _3dhi.Data.Entities
 {
     public class Role : IdentityRole<Guid>
     {
+                
     }
 }

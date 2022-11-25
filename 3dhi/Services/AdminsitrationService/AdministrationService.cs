@@ -23,14 +23,13 @@ namespace _3dhi.Services.AdminsitrationService
 
 
             var admins = await this._db.Users
-                 //.Where(x => x.EntityStatus == Enum.EntityStatus.Created)
-                 //.Include(x => x.)
-                 //.ThenInclude(y => y.Role)
-                 //.Where(x => x.UserRoles.RoleId)
+                 .Include(x => x.User)
+                 .ThenInclude(y => y.Role)
+                 .Where(x => x.UserRoles.RoleId))                               
                  .ToListAsync();
 
             return admins;
-               
+
         }
     }
 }
