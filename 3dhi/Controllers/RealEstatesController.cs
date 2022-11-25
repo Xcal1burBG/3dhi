@@ -13,13 +13,22 @@ namespace _3dhi.Controllers
     public class RealEstatesController : Controller
     {
         private readonly ILogger<RealEstatesController> _logger;
-        private readonly RealEstatesService _realEstateService;
+        private readonly IRealEstatesService _realEstateService;
         private readonly IMapper _mapper;
 
-        public RealEstatesController(ILogger<RealEstatesController> logger, RealEstatesService realEstateService, IMapper mapper)
+        public RealEstatesController(ILogger<RealEstatesController> logger, IRealEstatesService realEstateService, IMapper mapper)
         {
             _logger = logger;
             _realEstateService = realEstateService;
+        }
+
+        // Beginning page for Real Estates
+        [Route("~/realestates/")]
+        public IActionResult RealEstates()
+        {
+            
+            return this.View();
+
         }
 
 
@@ -33,7 +42,7 @@ namespace _3dhi.Controllers
 
         }
 
-        [Route("~/realestates")]
+        [Route("~/realestates/getall")]
         public async Task<IActionResult> GetAllRealEstates()
         {
             List<RealEstate> realEstates = await _realEstateService.GetAllRealEstates();

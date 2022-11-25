@@ -10,10 +10,10 @@ namespace _3dhi.Controllers
     public class MessageController : Controller
     {
         private readonly ILogger<ManagementController> _logger;
-        private readonly MessagesService _messageService;
+        private readonly IMessagesService _messageService;
         private readonly IMapper _mapper;
 
-        public MessageController(ILogger<ManagementController> logger, MessagesService messageService)
+        public MessageController(ILogger<ManagementController> logger, IMessagesService messageService)
         {
             _logger = logger;
             _messageService = messageService;
