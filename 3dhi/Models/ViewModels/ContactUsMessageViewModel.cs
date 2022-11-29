@@ -1,6 +1,6 @@
-﻿namespace _3dhi.Data.Entities
+﻿namespace _3dhi.Models.ViewModels
 {
-    public class ContactUsFormMessage
+    public class ContactUsMessageViewModel  
     {
         public string SenderName { get; set; }
         public string Email { get; set; }

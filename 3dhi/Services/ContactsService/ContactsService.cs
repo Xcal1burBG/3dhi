@@ -2,6 +2,7 @@
 using _3dhi.Data;
 using _3dhi.Data.Entities;
 using _3dhi.Models.InputModels;
+using System.Security.Cryptography.X509Certificates;
 
 namespace _3dhi.Services.ContactsService
 {
@@ -13,27 +14,22 @@ namespace _3dhi.Services.ContactsService
             _db = db;
         }
 
-        public async Task SendMessageThroughContactUs(CreateMessageInputModel input)
+        public async Task<ContactUsFormMessage> CreateMessageThroughContactUs(CreateContactUsInputModel input)
         {
-            var listOfAdmins = "";// TODO => service that returns list of the Ids of all admins
 
-            foreach (var admin in listOfAdmins)
+            var contactUsMessage = new ContactUsFormMessage
             {
-                var message = new Message
-                {
-                    Id = Guid.NewGuid(),
-                    Date = DateTime.UtcNow,
-                    SenderId = Guid.NewGuid(), //this is going to be changed!
-                    //ReceiverId = admin.Id,
-                    Text = input.Text,
+                SenderName = input.SenderName,
+                Email = input.Email,
+                CreatedDate = DateTime.UtcNow,
+                Message = input.Message,
+                PhoneNumber = input.PhoneNumber,
+                IsMessageRead = false
 
-                };
-
-                await this._db.Messages.AddAsync(message);
-
-            }
+            };
 
             await this._db.SaveChangesAsync();
+            return contactUsMessage;
 
         }
 

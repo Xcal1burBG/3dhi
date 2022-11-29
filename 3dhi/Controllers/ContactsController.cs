@@ -1,4 +1,6 @@
-﻿using _3dhi.Services.ContactsService;
+﻿using _3dhi.Models.InputModels;
+using _3dhi.Models.ViewModels;
+using _3dhi.Services.ContactsService;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,19 @@ namespace _3dhi.Controllers
         }
 
         [Route("~/contacts")]
-        public IActionResult Contacts()
+        public IActionResult ContactUs()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("~/contactus")]
+
+        public async Task<IActionResult> CreateContactUsMessage(CreateContactUsInputModel input)
+        {
+            var contactUsMessage = await this._contactsService.CreateMessageThroughContactUs(input);
+            var output = this._mapper.Map<ContactUsMessageViewModel>(contactUsMessage);
+            return View(output);
         }
     }
 }

@@ -9,5 +9,6 @@ namespace _3dhi.Data.Entities
         public Guid SenderId { get; set; }
         public Guid ReceiverId { get; set; }
         public string Text { get; set; }
+        public bool IsMessageRead { get; set; }
     }
 }
