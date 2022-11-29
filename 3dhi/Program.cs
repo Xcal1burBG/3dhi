@@ -81,4 +81,5 @@ app.MapRazorPages();
 // Seed Admin in Database
 AdminSeeder.Seed(app);
 
+
 app.Run();

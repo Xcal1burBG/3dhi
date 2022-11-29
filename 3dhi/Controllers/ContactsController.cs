@@ -20,15 +20,8 @@ namespace _3dhi.Controllers
         }
 
         [Route("~/contacts")]
-        public IActionResult ContactUs()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        [Route("~/contactus")]
-
-        public async Task<IActionResult> CreateContactUsMessage(CreateContactUsInputModel input)
+        public async Task<IActionResult> Contacts/*CreateContactUsMessage*/(CreateContactUsInputModel input)
         {
             var contactUsMessage = await this._contactsService.CreateMessageThroughContactUs(input);
             var output = this._mapper.Map<ContactUsMessageViewModel>(contactUsMessage);
