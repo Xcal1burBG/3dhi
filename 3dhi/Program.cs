@@ -2,7 +2,6 @@ using _3dhi.Data;
 using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
 using _3dhi.Services.AdditionalService;
-using _3dhi.Services.AdminsitrationService;
 using _3dhi.Services.ContactsService;
 using _3dhi.Services.IncomesService;
 using _3dhi.Services.ListingsService;
@@ -38,7 +37,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
-builder.Services.AddTransient<IAdministrationService, AdministrationService>();
 builder.Services.AddScoped<IContactsService, ContactsService>();
 builder.Services.AddTransient<ICostsService, CostsService>();
 builder.Services.AddTransient<IIncomesService, IncomesService>();
