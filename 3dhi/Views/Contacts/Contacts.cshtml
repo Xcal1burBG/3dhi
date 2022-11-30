@@ -16,20 +16,16 @@
 </div>
 <form>
     <div>
-        <p><Или ни оставете съобщение и ние ще Ви отговорим:</p>
-        <label asp-for="SenderName"></label>
-        <input asp-for="SenderName" />
+        <p>Или ни оставете съобщение и ние ще Ви отговорим:</p>
+        <input class="input-form" asp-for="SenderName" placeholder ="Име"/>
     </div>
     <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
+        <input class="input-form" asp-for="Email" placeholder="Имейл" />
     </div>
     <div>
-        <label asp-for="PhoneNumber"></label>
-        <input asp-for="PhoneNumber" />
+        <input class="input-form" asp-for="PhoneNumber" placeholder="Телефонен номер" />
     </div>
     <div>
-        <label asp-for="Message"></label>
-        <textarea asp-for="Message" rows="6">        </textarea>
+        <textarea class="input-form" asp-for="Message" rows="6" placeholder="Напиши съобщение">        </textarea>
     </div>
 </form>
