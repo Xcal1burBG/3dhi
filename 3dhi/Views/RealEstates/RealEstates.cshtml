@@ -8,12 +8,13 @@
     <h1 class="display-4">Покупко - продажба на недвижими имоти</h1>
     <p>Тук ще се публикуват имоти, които се продават, с описание и снимки</p>
 
+    @if (this.User.IsInRole("Admin"))
+    {
+        <button>Добави имот</button>
+    }
+
 
 </div>
 <div class="text-left">
-   
-
-
-
-
 </div>
+<link rel="stylesheet" href="/css/AddAdminButtons.css">

@@ -1,13 +1,17 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Stay";
 }
 
 <div class="text-center">
     <h1 class="display-4">Настаняване</h1>
     <p>Тук ще можете да потърсите апартамент за настаняване, удовлетворяващ изискванията Ви!</p>
-    <br>
-    <br>
-    <br>
+    
+    @if (this.User.IsInRole("Admin"))
+    {
+        <button>Добави имот</button>
+    }
+
     <p>Форма за търсене - дата от | дата до | брой възрастни | брой деца | филтър за цена</p>
     <br>
     <br>
@@ -17,3 +21,5 @@
     <br>
 
 </div>
+
+<link rel="stylesheet" href="/css/AddAdminButtons.css">
