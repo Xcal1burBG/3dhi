@@ -1,0 +1,18 @@
+﻿body {
+}
+
+textarea {
+    width: 410px;
+}
+button {
+    display: flex;
+    background: lightblue;
+    border-radius: 5px;
+    margin-left: 19rem;
+    padding: 2px 18px;
+    border: 1px solid;
+    font-size: 16px;
+}
+
+
+
