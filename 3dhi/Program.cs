@@ -1,15 +1,14 @@
 using _3dhi.Data;
 using _3dhi.Data.AdminSeeder;
 using _3dhi.Data.Entities;
-using _3dhi.Services.AdditionalService;
 using _3dhi.Services.ContactsService;
-using _3dhi.Services.IncomesService;
 using _3dhi.Services.ListingsService;
 using _3dhi.Services.MessagesService;
 using _3dhi.Services.OccupancyService;
 using _3dhi.Services.PricingService;
-using _3dhi.Services.RealEstatesService;
 using _3dhi.Services.StayService;
+//using _3dhi.Services.RealEstatesService;
+//using _3dhi.Services.IncomesService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,14 +37,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IContactsService, ContactsService>();
-builder.Services.AddTransient<ICostsService, CostsService>();
-builder.Services.AddTransient<IIncomesService, IncomesService>();
+//builder.Services.AddTransient<ICostsService, CostsService>(); 
+//builder.Services.AddTransient<IIncomesService, IncomesService>();
 builder.Services.AddTransient<IListingsService, ListingsService>();
 builder.Services.AddTransient<IMessagesService, MessagesService>();
 builder.Services.AddTransient<IOccupancyService, OccupancyService>();
 builder.Services.AddTransient<IPricingService, PricingService>();
-builder.Services.AddTransient<IRealEstatesService, RealEstatesService>();
-builder.Services.AddTransient<IStayService, StayService>();
+//builder.Services.AddTransient<IRealEstatesService, RealEstatesService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
