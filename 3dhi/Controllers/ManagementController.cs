@@ -7,13 +7,13 @@ namespace _3dhi.Controllers
     public class ManagementController : Controller
     {
         private readonly ILogger<ManagementController> _logger;
-        private readonly IListingsService _listingService;
+        private readonly IListingsService _listingsService;
         private readonly IMapper _mapper;
 
         public ManagementController(ILogger<ManagementController> logger, IListingsService listingService, IMapper mapper)
         {
             _logger = logger;
-            _listingService = listingService;
+            _listingsService = listingService;
 
         }
 

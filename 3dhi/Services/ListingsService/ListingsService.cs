@@ -10,11 +10,11 @@ namespace _3dhi.Services.ListingsService
     public class ListingsService : IListingsService
     {
 
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext _db;
 
         public ListingsService(ApplicationDbContext db)
         {
-            this.db = db;
+            this._db = db;
         }
 
 
@@ -33,49 +33,68 @@ namespace _3dhi.Services.ListingsService
 
             };
 
-            await this.db.Listings.AddAsync(listing);
-            await this.db.SaveChangesAsync();
+            await this._db.Listings.AddAsync(listing);
+            await this._db.SaveChangesAsync();
 
             return listing;
         }
 
-        // Get Listing 
+        // Get listing by Id
         public async Task<Listing> GetListing(Guid listingId)
         {
-            var listing = await this.db.Listings.FirstOrDefaultAsync(x => x.Id == listingId);
+            var listing = await this._db.Listings.FirstOrDefaultAsync(x => x.Id == listingId);
             return listing;
         }
 
-        // Edit Listing
+        // Get all listings from all users
+       public async Task<List<Listing>> GetAllListings()
+        {
+            var listings = await this._db.Listings.Where(x => x.EntityStatus == EntityStatus.Created).ToListAsync();
+            return listings;
+        }
+
+        // Get all listings from one user
+        public async Task<List<Listing>> GetAllListingsByUserId(Guid UserId)
+        {
+            var listings = await this._db.Listings
+                .Where(x=>x.UserId == UserId)
+                .Where(x => x.EntityStatus == EntityStatus.Created).
+                ToListAsync();
+
+            return listings;
+        }
+
+
+        // Edit listing
         public async Task<Listing> EditListing(EditListingInputModel input)
         {
-            var listing = await this.db.Listings.FirstOrDefaultAsync(x => x.Id == input.Id);
+            var listing = await this._db.Listings.FirstOrDefaultAsync(x => x.Id == input.Id);
 
             listing.Title = input.Title;
             listing.Description = input.Description;
             listing.Address = input.Address;
             listing.MainPhotoPath = input.MainPhotoPath;
 
-            await this.db.SaveChangesAsync();
+            await this._db.SaveChangesAsync();
             return listing;
         }
 
         // Delete Listing
         public async Task DeleteListing(Guid listingId)
         {
-            var listing = await this.db.Listings.FirstOrDefaultAsync(x => x.Id == listingId);
+            var listing = await this._db.Listings.FirstOrDefaultAsync(x => x.Id == listingId);
             listing.EntityStatus = EntityStatus.Deleted;
 
-            await this.db.SaveChangesAsync();
+            await this._db.SaveChangesAsync();
         }
 
         // Admin Option only - Change User
         public async Task<Listing> EditListing(Guid id, Guid newUserId)
         {
-            var listing = await this.db.Listings.FirstOrDefaultAsync(x => x.Id == id);
+            var listing = await this._db.Listings.FirstOrDefaultAsync(x => x.Id == id);
             listing.UserId = newUserId;
 
-            await this.db.SaveChangesAsync();
+            await this._db.SaveChangesAsync();
             return listing;
 
         }
