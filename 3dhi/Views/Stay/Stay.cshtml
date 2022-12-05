@@ -1,25 +1,21 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Stay";
 }
 
 <div class="text-center">
     <h1 class="display-4">Настаняване</h1>
-    <p>Тук ще можете да потърсите апартамент за настаняване, удовлетворяващ изискванията Ви!</p>
-    
-    @if (this.User.IsInRole("Admin"))
+    <p class="planning">
+        Тук директно ще се отваря списък с публикувани обяви, които ще се виждат както от регистрирани,
+        така и от нерегистрирани посетители. Обявите могат да се отварят, да се разглеждат, да се проверява заетост.
+        За извършване на резервация посетителя трябва да е задължително логнат
+    </p>
+
+    @if (this.User.Identity.IsAuthenticated)
     {
-        <button>Добави имот</button>
+    <button class="button-stay">Добави имот</button>
     }
 
-    <p>Форма за търсене - дата от | дата до | брой възрастни | брой деца | филтър за цена</p>
-    <br>
-    <br>
-    <p>Обяви, сортирани по подразбиране</p>
-    <br>
-    <br>
-    <br>
 
 </div>
 
-<link rel="stylesheet" href="/css/AddAdminButtons.css">
+<link rel="stylesheet" href="/css/Administration.css">

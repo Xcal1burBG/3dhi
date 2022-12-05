@@ -1,0 +1,36 @@
+﻿body {
+}
+h1 {
+    font-size: 16px;
+}
+.planning {
+    margin: 9rem 10rem 17rem 10rem;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+}
+
+.button-stay {
+    display: flex;
+    background: lightblue;
+    border-radius: 12px;
+    margin: 0px;
+    padding: 13px;
+    border: 1px solid;
+    font-size: 23px;
+}
+
+.textarea-contacts {
+    width: 410px;
+}
+.button-contacts {
+    display: flex;
+    background: lightblue;
+    border-radius: 5px;
+    margin-left: 19rem;
+    padding: 2px 18px;
+    border: 1px solid;
+    font-size: 16px;
+}
+
+

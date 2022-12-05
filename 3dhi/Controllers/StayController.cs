@@ -18,5 +18,7 @@ namespace _3dhi.Controllers
         {
             return View();
         }
+
+        //[Httpost]
     }
 }

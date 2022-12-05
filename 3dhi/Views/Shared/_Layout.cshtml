@@ -27,13 +27,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Management">Управление</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item"> // temporary deactivated until the booking system gets finished
                             <a class="nav-link text-dark" asp-area="" asp-controller="RealEstates" asp-action="RealEstates">Недвижими имоти</a>
-                        </li>
+                        </li>*@
+
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="GetMessages">Съобщения</a>
+                        </li>  
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Contacts">Контакти</a>
                         </li>
+
                     </ul>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/Identity/Account/Login';return false;">Влез</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/Identity/Account/Register';return false;">Регистрация</button>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
