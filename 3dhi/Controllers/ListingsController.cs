@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _3dhi.Controllers
 {
-    public class StayController : Controller
+    public class ListingsController : Controller
     {
-        private readonly ILogger<StayController> _logger;
+        private readonly ILogger<ListingsController> _logger;
         
-        public StayController(ILogger<StayController> logger)
+        public ListingsController(ILogger<ListingsController> logger)
         {
             _logger = logger;
         }
