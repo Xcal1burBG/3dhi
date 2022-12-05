@@ -6,7 +6,7 @@ namespace _3dhi.Services.ListingsService
     public interface IListingsService
     {
         // Create Listing
-        public Task<Listing> CreateListing(CreateListingInput input);
+        public Task<Listing> CreateListing(CreateListingInputModel input);
 
 
         // Get Listing 
@@ -14,7 +14,7 @@ namespace _3dhi.Services.ListingsService
         
 
         // Edit Listing
-        public Task<Listing> EditListing(EditListingInput input);
+        public Task<Listing> EditListing(EditListingInputModel input);
 
 
         // Delete Listing

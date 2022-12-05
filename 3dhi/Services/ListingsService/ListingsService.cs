@@ -19,7 +19,7 @@ namespace _3dhi.Services.ListingsService
 
 
         // Create Listing
-        public async Task<Listing> CreateListing(CreateListingInput input)
+        public async Task<Listing> CreateListing(CreateListingInputModel input)
         {
             var listing = new Listing
             {
@@ -47,7 +47,7 @@ namespace _3dhi.Services.ListingsService
         }
 
         // Edit Listing
-        public async Task<Listing> EditListing(EditListingInput input)
+        public async Task<Listing> EditListing(EditListingInputModel input)
         {
             var listing = await this.db.Listings.FirstOrDefaultAsync(x => x.Id == input.Id);
 
